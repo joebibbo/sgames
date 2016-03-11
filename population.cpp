@@ -6,7 +6,7 @@
 // Dataset = contains 500 names using ';' as key delimiter
 //  Last, First I.; Birt date ; Date of death
 // 
-// NOTE: Dates are always formatted as follows: Feburary 17th, 1924. 
+// ASSUMPTIONS: Dataset is always valid, and date are given in the format: dd/mm/YYYY
 //
 
 #include "stdio.h"
@@ -14,22 +14,10 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include <math.h>
 
 using namespace std;
 
-typedef struct tEntry
-{
-    typedef struct tDate
-    {
-        int month, day, year;
-    } tDate;
-
-    tDate  _birth, _death;
-    string name, birth, death;
-
-} tEntry;
-
+// simple function to split(tokenize) a string based on a delimiter character
 vector<string> tokenize(const char *str, char c = ' ')
 {
     vector<string> result;
@@ -42,30 +30,43 @@ vector<string> tokenize(const char *str, char c = ' ')
             str++;
 
         result.push_back(string(begin, str));
+
     } while (0 != *str++);
 
     return result;
 }
 
+// Constraints to the problem.
 const int firstYear = 1900;
 const int lastYear  = 2000;
 
+// Solution wrapped in the main executable.
 int main(int argc, char* argv[])
 {
-    std::string nextline;
-    std::vector<tEntry> dataSet;
+    struct tEntry
+    {
+        typedef struct tDate
+        {
+            int month, day, year;
+        } tDate;
 
-    std::ifstream data;
+        tDate  _birth, _death;
+        string name, birth, death;
+
+    } next ;
+
+    string nextline;
+
+    ifstream data;
     data.open ("names_");
     if (data.is_open())
     {
+
         vector<int> populations(lastYear-firstYear + 1, 0);
         int mostPopular = 0;
 
-        while (std::getline(data, nextline))
+        while (getline(data, nextline))
         {
-            tEntry next;
-
             vector<string> line = tokenize(nextline.c_str(), ';');
             next.name  = line[0];
             next.birth = line[1];
@@ -83,14 +84,11 @@ int main(int argc, char* argv[])
                     mostPopular = populations[age - firstYear];
                 }
             }
-
-            dataSet.push_back(next);
         }
 
         printf("The year(s) with the most people were alive: \n\t");
         for (int yr=firstYear; yr<=lastYear; yr++)
         {
-            //printf("%d: %d\n ", yr, populations[yr-firstYear]);
             if ( populations[yr-firstYear] == mostPopular)
                 printf("%d ", yr);
         }

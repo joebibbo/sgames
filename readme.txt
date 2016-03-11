@@ -13,4 +13,4 @@ population.cpp - builds to an executable. It reads 'names_' and return the answe
 To build:
 
 mac: clang++ -std=c++0x -stdlib=libc++ population.cpp -o population
-win: cl population.cpp
+win: cl population.cpp /EHsc
