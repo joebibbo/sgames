@@ -70,6 +70,8 @@ int main(int argc, char* argv[])
     std::string nextline;
     std::vector<tEntry> dataSet;
 
+    printf("\nsanitizing..." );
+
     // Read generated dataset.
     std::ifstream data;
     data.open ("names");
@@ -101,6 +103,8 @@ int main(int argc, char* argv[])
         output << next.name << ";" << next.birth << ";" << next.death << std::endl;
     }
     output.close();
+
+    printf("%d valid entries in dataset: 'names_'\n", dataSet.size() );
 
 	return 0;
 }
