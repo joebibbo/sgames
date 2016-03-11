@@ -104,7 +104,7 @@ int main(int argc, char* argv[])
     }
     output.close();
 
-    printf("%d valid entries in dataset: 'names_'\n", dataSet.size() );
+    printf("%d valid entries in dataset: 'names_'\n", (int) dataSet.size() );
 
 	return 0;
 }

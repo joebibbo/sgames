@@ -8,3 +8,9 @@ The solution is written in C++-0x11. It can be run in Windows or Mac, with a mor
 
 genfixup.cpp   - builds to an executable. It will read 'names' and create the final dataset 'names_'
 population.cpp - builds to an executable. It reads 'names_' and return the answer to the problem above.
+
+
+To build:
+
+mac: clang++ -std=c++0x -stdlib=libc++ population.cpp -o population
+win: cl population.cpp
