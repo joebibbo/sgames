@@ -1,12 +1,6 @@
-// genfixup.cpp : A program to fixup some generated data that will be used by the population program.
+// genfixup.cpp : A program to fixup some generated data that will be used by the population program, see
+// readme.txt for more details.
 //
-// Given a list of people with their birth and end years (all between 1900 and 2000), find the year 
-// with the most number of people alive.
-//
-// Dataset = contains 500 names using ';' as key delimiter
-//  Last, First I.; Birt date ; Date of death
-// 
-// NOTE: Dates are always formatted as follows: Feburary 17th, 1924. 
 //
 
 #include "stdio.h"
